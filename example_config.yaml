@@ -1,0 +1,14 @@
+:rets_info: 
+  :url: http://demo.crt.realtors.org:6103/rets/login
+  :username: Joe
+  :password: Schmoe
+  #:user_agent: CRT-Data-Fetch/1.0
+  :log_file: yourlogfile.log
+:resource: Property
+:class: RES
+#:limit: 100000
+:select:
+    - ListDate: Listing Date
+    - ClosePrice: Final Sale Price
+    - ListPrice
+:dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
