@@ -1,0 +1,133 @@
+Welcome to simpleRETS, the bare bones get-you-your-data-quickly RETS client from the Center for REALTOR Technology.  Read this to learn how to configure and use simpleRETS.
+
+OVERVIEW:
+SimpleRETS consists of 2 command-line programs that use YAML configuration files to conntect to a RETS server.  The 'metadata' program is a simple RETS metadata browser, while 'rets_data_fetch' is the program that will pull the data from the RETS server.  
+
+FEATURES:
+ - Simple Setup, one YAML configuration file is all you need.
+ - Can be run from a scheduler or a cron job
+ - Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
+ - Column headers can be either the RETS System Name or user defined.
+ - Delta queries.  SimpleRETS supports data based delta queries.
+
+REQUIREMENTS:
+The binary releases are built using rubyscript2exe and contain all the supporting libraries you need and should run out of the box with no dependencies.  Right now there are binary builds to Win32, Mac OSX (darwin) and Linux.
+
+The source release contains all the ruby files you need to run the scripts in ruby
+- rets_helper.rb
+- progressbar.rb
+- metadata.rb*
+- rets_data_fetch.rb*
+You will need to have Ruby and libRETS, with the Ruby bindings, installed to run these scripts.  
+
+Some familiarity with RETS is suggested.  In particular you should understand the concepts of Resource, Class, Lookup and System Names as well as how to build a simple DMQL query.  If you need help in these areas, please go to the forums at http://www.rets.org.
+
+METADATA:
+This program allows you to browse the metadata on a defined server.  This program will always display the following information
+
+System ID: <SystemID>
+Description: <Description
+Comment: <Comment>
+
+Usage:
+metadata <configuration_yaml_file>
+	Lists all of the resources availabe in the following format.
+	
+Resources: 
+- <System Name> (<StandardName, <Visible Name>)
+
+
+metadata <configuration_yaml_file> <Resource System Name>
+	Lists all of the Classes for the given Resource in the following format.
+	
+Classes for <Resource>:
+- <System Name> (<StandardName, <Visible Name>)
+
+
+metadata <configuration_yaml_file> <Resource System Name> <Class System Name>
+	Lists all of the Tables for the given Resource and Class
+
+Tables for <Resource>-<Class>:
+- <System Name> (<Standard Name> <Short Name> (<Long Name>)) - Required: <Required Number>
+
+
+metadata <configuration_yaml_file> <Resource System Name> LOOKUPS
+	Lists all of the Lookups for the given Resource
+
+Lookups for <Resource>: 
+- <System Name>(<Standard Name>)
+
+
+metadata <configuration_yaml_file> <Resource System Name> LOOKUPS <Lookup System Name>
+	Lists all of the Lookup Values for the given Resource and Lookup
+
+Lookup Types for <Resource>-<Lookup>(<Lookup Standard Name>):
+
+Lookup value: <Value> (<Short Value>, <Long Value>)
+
+
+RETS_DATA_FETCH:
+This program allows you to pull data from a RETS server defined in a config file using the query information also defined there.  Date parameters may be passed to the query allowing you to make delta queries.
+
+Usage:
+rets_data_fetch  <config file>
+	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the prior month  those parameters
+	
+rets_data_fetch  <config file> <month in YYYY-MM format>
+	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the given month to as those parameters
+	
+rets_data_fetch  <config file> <month in YYYY-MM format> <month in YYYY-MM format>
+	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first day of the first month and last day of the second month to as those parameters
+
+Output:
+ - All output is to standard out.
+ - Format is of CSV file
+ - Redirect output to save to file.
+
+Standard error will display progress information.
+	Fetching 5 of 5 items
+Progress:      100% |oooooooooooooooooooooooooooooooooooooooooo| ETA:  00:00:00
+Done!
+
+
+CONFIGURATION:
+The configuration file is used by both metadata and rets_data_fetch to connect to and query the RETS server.  It is a YAML file using the following layout. 
+
+:rets_info: 
+	:url: demo.crt.realtors.org—login <http://demo.crt.realtors.org:6103/rets/login>
+	:username: Joe
+	:password: Schmoe
+	#:user_agent: CRT-Data-Fetch/1.0
+	:log_file: yourlogfile.log
+:resource: Property
+:class: RES
+:select:
+	- ListDate: Listing Date
+	- ClosePrice: Final Sale Price
+	- ListPrice
+:dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
+
+Rets Info Section (:rets_info:)
+	-:url: the URL of the RETS server
+	-:username: the username to access the RETS server
+	-:password: the password for the user to access the RETS server
+	-:user_agent: optional parameter that some RETS servers require for access
+	-:log_file: where the details of the RETS interactions will be logged to. Optional and no logging is done if this parameter is not present.
+	
+Resource (:resource:) The system name of the resource you are pulling data from
+
+Class(:class:) the system name of the class your are pulling data from
+
+Limit(:limit:) an optional parameter that can be used to pull a subset of the data requested.  Useful when constructing the query, it will allow you to not pull large data sets while at the same time seeing how many items matched your query since the output will tell you that it is pulling <limit> of X items where X is the total number of items that matched the query.
+
+Select Section(:select:) This is an array of the system names of the table (fields) you wish to pull from the resource and class.  If you just have the system name the column for that field will be the system name.  However if you use the format of <SystemName>: <Mapping Name> the column header for that field will be the mapping name.
+
+DMQL Section(:dmql:) The DQML query that controls what data is pulled from the RETS server.  The parameters of <<start>> and <<end>> will be set based on the date parameters passed  rets_data_fetch, see above in RETS_DATA_FETCH about start and stop dates
+
+Take a look at example_config.yaml to get started.  The file is configured to connect to the demo RETS server.
+
+LOGGING:
+If you are having trouble, turn on logging by defining the logfile rets_info parameter in the configuration file as discussed above. This will give wealth of information about what libRETS is doing to communicate with the RETS server.
+
+SUPPORT:
+If you need help, feel free to email info@crt.realtors.org.  Help with RETS can be obtained on at http://www.rets.org.
