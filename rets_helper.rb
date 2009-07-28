@@ -5,6 +5,14 @@ include Librets
 
 module RetsHelper 
   
+  def get_version
+    return "1.0"
+  end
+  
+  def get_lib_version
+    return RetsSession.GetLibraryVersion()
+  end
+  
   def execute_rets_action(rets_info)
     session = RetsSession.new(rets_info[:url])
     if(rets_info.has_key?(:user_agent))

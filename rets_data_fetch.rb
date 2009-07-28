@@ -57,6 +57,9 @@ execute_rets_action(config[:rets_info]) do |session|
   count = 0
     
   #Create a progress bar for sanity on large downloads
+  version = get_version
+  libVersion = get_lib_version
+  STDERR.puts"SimpleRETS RETS Data Fetcher Version #{version} running on libRETS version #{libVersion}"
   STDERR.puts "Fetching #{requested} of #{response.count} items"
   pbar = ProgressBar.new("Progress", requested)
   
