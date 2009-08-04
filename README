@@ -8,7 +8,7 @@ FEATURES:
  - Can be run from a scheduler or a cron job
  - Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
  - Column headers can be either the RETS System Name or user defined.
- - Delta queries.  SimpleRETS supports data based delta queries.
+ - Delta queries.  SimpleRETS supports date based delta queries.
 
 REQUIREMENTS:
 The binary releases are built using rubyscript2exe and contain all the supporting libraries you need and should run out of the box with no dependencies.  Right now there are binary builds to Win32, Mac OSX (darwin) and Linux.
