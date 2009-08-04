@@ -36,8 +36,7 @@
 
     <?php if (beta_ver()) : ?>
     <p>
-      The current beta version is <b><?php print_beta_ver() ?></b>. View the
-      complete <a href="news_beta.php">beta version history</a>.
+      The current beta version is <b><?php print_beta_ver() ?></b></a>.
     </p>
     <?php endif; ?>
       
