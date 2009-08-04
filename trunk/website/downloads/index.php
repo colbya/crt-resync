@@ -50,7 +50,7 @@ function human_file_size($file, $decimals = 2)
         </td>
         <td><?= human_file_size("simplerets-darwin-" . ver() . ".zip", 1) ?></td>
         <td>
-          OSX (darwin) binary in a zip archive.
+          OSX (darwin) binary in a zip archive (Intel Only).
         </td>
       </tr>
       <tr>

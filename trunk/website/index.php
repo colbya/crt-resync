@@ -42,6 +42,7 @@
       
     <h3>News</h3>
     <ul>
+	  <li> <b>4 August 2009</b>: Version 1.0.1 released.  Adds version information to the output.</li>
       <li> <b>24 July 2009</b>: Version 1.0 released. </li>
     </ul>
 
