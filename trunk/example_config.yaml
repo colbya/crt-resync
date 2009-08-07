@@ -4,6 +4,7 @@
   :password: Schmoe
   #:user_agent: CRT-Data-Fetch/1.0
   #:user_agent_password: yourUserAgentPassword
+  #:user_agent_auth_interealty: yes
   :rets_version: 1.7.2
   :log_file: yourlogfile.log
 :resource: Property

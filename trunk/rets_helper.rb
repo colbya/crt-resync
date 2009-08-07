@@ -19,6 +19,11 @@ module RetsHelper
       session.user_agent = rets_info[:user_agent]
       if(rets_info.has_key?(:user_agent_password))
         session.user_agent_password = rets_info[:user_agent_password]
+        if(rets_info.has_key?(:user_agent_auth_interealty))
+          session.set_user_agent_auth_type(Librets::USER_AGENT_AUTH_INTEREALTY)
+        else 
+          session.set_user_agent_auth_type(Librets::USER_AGENT_AUTH_RETS_1_7)
+        end
       end      
     end
     
