@@ -11,6 +11,7 @@
 :class: RES
 #:limit: 100000
 :select:
+    - ListingID: ID
     - ListDate: Listing Date
     - ClosePrice: Final Sale Price
     - ListPrice
