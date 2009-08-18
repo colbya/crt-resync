@@ -1,3 +1,4 @@
+#Stuff used by everyone
 :rets_info: 
   :url: http://demo.crt.realtors.org:6103/rets/login
   :username: Joe
@@ -7,6 +8,8 @@
   #:user_agent_auth_interealty: yes
   :rets_version: 1.7.2
   :log_file: yourlogfile.log
+  
+#Stuff needed for rets_data_fetch 
 :resource: Property
 :class: RES
 #:limit: 100000
@@ -16,3 +19,6 @@
     - ClosePrice: Final Sale Price
     - ListPrice
 :dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
+
+#Stuff used by object_fetch
+:item_id: ID
