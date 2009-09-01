@@ -22,3 +22,5 @@
 
 #Stuff used by object_fetch
 :item_id: ID
+:object_types:
+    - Photo
