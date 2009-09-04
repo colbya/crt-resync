@@ -1,7 +1,7 @@
 Welcome to simpleRETS, the bare bones get-you-your-data-quickly RETS client from the Center for REALTOR Technology.  Read this to learn how to configure and use simpleRETS.
 
 OVERVIEW:
-SimpleRETS consists of 2 command-line programs that use YAML configuration files to conntect to a RETS server.  The 'metadata' program is a simple RETS metadata browser, while 'rets_data_fetch' is the program that will pull the data from the RETS server.  
+SimpleRETS consists of 3 command-line programs that use YAML configuration files to conntect to a RETS server.  The 'metadata' program is a simple RETS metadata browser, while 'rets_data_fetch' is the program that will pull the data from the RETS server.  Finally the 'object_fetch' program pulls the object data like photos for the items downloaded in 'rets_data_fetch'.
 
 FEATURES:
  - Simple Setup, one YAML configuration file is all you need.
@@ -9,6 +9,7 @@ FEATURES:
  - Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
  - Column headers can be either the RETS System Name or user defined.
  - Delta queries.  SimpleRETS supports date based delta queries.
+ - Object download tool.  Can pull objects like photos from the RETS server.
 
 REQUIREMENTS:
 The binary releases are built using rubyscript2exe and contain all the supporting libraries you need and should run out of the box with no dependencies.  Right now there are binary builds to Win32, Mac OSX (darwin) and Linux.
@@ -18,9 +19,10 @@ The source release contains all the ruby files you need to run the scripts in ru
 - progressbar.rb
 - metadata.rb*
 - rets_data_fetch.rb*
-You will need to have Ruby and libRETS, with the Ruby bindings, installed to run these scripts.  
+- object_fetch.rb*
+*You will need to have Ruby and libRETS, with the Ruby bindings, installed to run these scripts.  
 
-Some familiarity with RETS is suggested.  In particular you should understand the concepts of Resource, Class, Lookup and System Names as well as how to build a simple DMQL query.  If you need help in these areas, please go to the forums at http://www.rets.org.
+Some familiarity with RETS is suggested.  In particular you should understand the concepts of Resource, Class, Lookup and System Names as well as how to build a simple DMQL query.  If you indeed to use object_fetch you should understand how Get Object requests work.  If you need help in these areas, please go to the forums at http://www.rets.org.
 
 METADATA:
 This program allows you to browse the metadata on a defined server.  This program will always display the following information
@@ -89,26 +91,39 @@ Standard error will display progress information.
 Progress:      100% |oooooooooooooooooooooooooooooooooooooooooo| ETA:  00:00:00
 Done!
 
+OBJECT_FETCH:
+ADD THIS!!!
 
 CONFIGURATION:
 The configuration file is used by both metadata and rets_data_fetch to connect to and query the RETS server.  It is a YAML file using the following layout. 
 
+#Stuff used by everyone
 :rets_info: 
-	:url: demo.crt.realtors.org—login <http://demo.crt.realtors.org:6103/rets/login>
-	:username: Joe
-	:password: Schmoe
-	#:user_agent: CRT-Data-Fetch/1.0
-	#:user_agent_password: yourUserAgentPassword
-	#:user_agent_auth_interealty: yes
-	:rets_version: 1.7.2
-	:log_file: yourlogfile.log
+  :url: http://demo.crt.realtors.org:6103/rets/login
+  :username: Joe
+  :password: Schmoe
+  #:user_agent: CRT-Data-Fetch/1.0
+  #:user_agent_password: yourUserAgentPassword
+  #:user_agent_auth_interealty: yes
+  :rets_version: 1.7.2
+  :log_file: yourlogfile.log
+  
+#Stuff needed for rets_data_fetch 
 :resource: Property
 :class: RES
+#:limit: 100000
 :select:
-	- ListDate: Listing Date
-	- ClosePrice: Final Sale Price
-	- ListPrice
+    - ListingID: ID
+    - ListDate: Listing Date
+    - ClosePrice: Final Sale Price
+    - ListPrice
 :dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
+
+#Stuff used by object_fetch
+:item_id: ID
+:object_types:
+    - Photo
+
 
 Rets Info Section (:rets_info:)
 	-:url: the URL of the RETS server
@@ -129,6 +144,8 @@ Limit(:limit:) an optional parameter that can be used to pull a subset of the da
 Select Section(:select:) This is an array of the system names of the table (fields) you wish to pull from the resource and class.  If you just have the system name the column for that field will be the system name.  However if you use the format of <SystemName>: <Mapping Name> the column header for that field will be the mapping name.
 
 DMQL Section(:dmql:) The DQML query that controls what data is pulled from the RETS server.  The parameters of <<start>> and <<end>> will be set based on the date parameters passed  rets_data_fetch, see above in RETS_DATA_FETCH about start and stop dates
+
+Item ID(:item_id:) The id in the list of selected fields that uniquely identifies an object.  This is used by object_fetch to make it's get object requests.
 
 Take a look at example_config.yaml to get started.  The file is configured to connect to the demo RETS server.
 
