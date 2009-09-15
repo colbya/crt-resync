@@ -92,7 +92,14 @@ Progress:      100% |oooooooooooooooooooooooooooooooooooooooooo| ETA:  00:00:00
 Done!
 
 OBJECT_FETCH:
-ADD THIS!!!
+This program will perform get object requests based on the data in the config file as well as data inside the the CSV output of a prior rets_data_fetch request.
+
+Usage:
+object_fetch <config file> <CSV file from prior rets_data_fetch>
+	Performs the get object request.  item_id field in the config file will identify the column in the CSV file that contains the item ids for the request.
+
+Output:
+For each object type defined in the config file, a zip file called <object type>.zip will be created.  In this zip file is a directory for each item id, and in that directory is all the objects of that type for the item.
 
 CONFIGURATION:
 The configuration file is used by both metadata and rets_data_fetch to connect to and query the RETS server.  It is a YAML file using the following layout. 
@@ -146,6 +153,8 @@ Select Section(:select:) This is an array of the system names of the table (fiel
 DMQL Section(:dmql:) The DQML query that controls what data is pulled from the RETS server.  The parameters of <<start>> and <<end>> will be set based on the date parameters passed  rets_data_fetch, see above in RETS_DATA_FETCH about start and stop dates
 
 Item ID(:item_id:) The id in the list of selected fields that uniquely identifies an object.  This is used by object_fetch to make it's get object requests.
+
+Object Types: A list of the types of objects you wish to run GetObject requests for.  For each type a zipfile with the name <object type>.zip will be created.
 
 Take a look at example_config.yaml to get started.  The file is configured to connect to the demo RETS server.
 
