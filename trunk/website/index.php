@@ -30,7 +30,7 @@
 	  <li> Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.</li>
 	  <li> Column headers can be either the RETS System Name or user defined.</li>
 	  <li> Delta queries.  SimpleRETS supports date based delta queries.</li>
-	  <li> Get Object support.  Get photos and other media items.</li>
+	  <li> Get Object support.  Get photos and other media items.  Darwin version now works on Snow Leopard!</li>
     </ul>
     <para>
       The current version is <b><?php print_ver()?></b>.
