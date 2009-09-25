@@ -44,6 +44,7 @@
       
     <h3>News</h3>
     <ul>
+ 	  <li> <b>25 September 2009</b>: Version 1.1 released.  Added Get Object support.</li>
 	  <li> <b>7 August 2009</b>: Version 1.0.2 released.  Supports UA Authentication and specifing the RETS Version.</li>
 	  <li> <b>4 August 2009</b>: Version 1.0.1 released.  Adds version information to the output.</li>
       <li> <b>24 July 2009</b>: Version 1.0 released. </li>
