@@ -1,10 +1,11 @@
-<?php $tmpl_title = "An Open Source RETS Server";
-      $tmpl_header = "Variman: An Open Source RETS Server";
+<?php $tmpl_title = "A Simple Open Source Command Line RETS Client";
+      $tmpl_header = "simpleRETS: A command line RETS client";
       $tmpl_location = "Home";
       include("header.php");
 ?>
     <div class="logo">
-    </div>
+	  <img src="simple_rets_small.jpg" alt="simpleRETS Logo">
+	</div>
 
     <div class="body">
     <h3>Introduction</h3>
@@ -29,6 +30,7 @@
 	  <li> Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.</li>
 	  <li> Column headers can be either the RETS System Name or user defined.</li>
 	  <li> Delta queries.  SimpleRETS supports date based delta queries.</li>
+	  <li> Get Object support.  Get photos and other media items.</li>
     </ul>
     <para>
       The current version is <b><?php print_ver()?></b>.
