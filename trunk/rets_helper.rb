@@ -6,7 +6,7 @@ include Librets
 module RetsHelper 
   
   def get_version
-    return "1.0.2"
+    return "1.1"
   end
   
   def get_lib_version
