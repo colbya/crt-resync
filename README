@@ -1,165 +1,380 @@
-Welcome to simpleRETS, the bare bones get-you-your-data-quickly RETS client from the Center for REALTOR Technology.  Read this to learn how to configure and use simpleRETS.
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf250
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPS-BoldMT;\f1\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\margb1800\margt1800\vieww26980\viewh14440\viewkind0
+\deftab720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\qc\pardirnatural
 
-OVERVIEW:
-SimpleRETS consists of 3 command-line programs that use YAML configuration files to conntect to a RETS server.  The 'metadata' program is a simple RETS metadata browser, while 'rets_data_fetch' is the program that will pull the data from the RETS server.  Finally the 'object_fetch' program pulls the object data like photos for the items downloaded in 'rets_data_fetch'.
+\f0\b\fs32 \cf0 \expnd0\expndtw0\kerning0
+simpleRETS Instructions\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-FEATURES:
- - Simple Setup, one YAML configuration file is all you need.
- - Can be run from a scheduler or a cron job
- - Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
- - Column headers can be either the RETS System Name or user defined.
- - Delta queries.  SimpleRETS supports date based delta queries.
- - Object download tool.  Can pull objects like photos from the RETS server.
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\
+Welcome to simpleRETS, the bare bones get-you-your-data-quickly RETS client from the Center for REALTOR Technology.  Read this to learn how to configure and use simpleRETS.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-REQUIREMENTS:
-The binary releases are built using rubyscript2exe and contain all the supporting libraries you need and should run out of the box with no dependencies.  Right now there are binary builds to Win32, Mac OSX (darwin) and Linux.
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 OVERVIEW:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-The source release contains all the ruby files you need to run the scripts in ruby
-- rets_helper.rb
-- progressbar.rb
-- metadata.rb*
-- rets_data_fetch.rb*
-- object_fetch.rb*
-*You will need to have Ruby and libRETS, with the Ruby bindings, installed to run these scripts.  
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone SimpleRETS consists of 3 command-line programs that use YAML configuration files to connect to a RETS server.  The 'metadata' program is a simple RETS metadata browser.  The 'rets_data_fetch' program will pull the data from the RETS server.  Finally the 'object_fetch' program pulls the object data like photos for the items downloaded in 'rets_data_fetch'.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Some familiarity with RETS is suggested.  In particular you should understand the concepts of Resource, Class, Lookup and System Names as well as how to build a simple DMQL query.  If you indeed to use object_fetch you should understand how Get Object requests work.  If you need help in these areas, please go to the forums at http://www.rets.org.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 FEATURES:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-METADATA:
-This program allows you to browse the metadata on a defined server.  This program will always display the following information
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone  - Simple Setup, one YAML configuration file is all you need.\
+ - Can be run from a scheduler or a cron job\
+ - Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.\
+ - Column headers can be either the RETS System Name or user defined.\
+ - Delta queries.  SimpleRETS supports date based delta queries.\
+ - Object download tool.  Can pull objects like photos from the RETS server.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-System ID: <SystemID>
-Description: <Description
-Comment: <Comment>
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 REQUIREMENTS:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Usage:
-metadata <configuration_yaml_file>
-	Lists all of the resources availabe in the following format.
-	
-Resources: 
-- <System Name> (<StandardName, <Visible Name>)
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone The binary releases are built using rubyscript2exe and contain all the supporting libraries you need and should run out of the box with no dependencies.  Right now there are binary builds to Win32, Mac OSX (darwin) and Linux.\
+\
+The source release contains all the ruby files you need to run the scripts in ruby\
+- rets_helper.rb\
+- progressbar.rb\
+- metadata.rb*\
+- rets_data_fetch.rb*\
+- object_fetch.rb*\
+*You will need to have Ruby and libRETS, with the Ruby bindings, installed to run these scripts.  \
+\
+Some familiarity with RETS is suggested.  In particular you should understand the concepts of Resource, Class, Lookup and System Names as well as how to build a simple DMQL query.  If you indeed to use object_fetch you should understand how Get Object requests work.  If you need help in these areas, please go to the forums at http://www.rets.org.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
 
+\fs22 \cf0 \expnd0\expndtw0\kerning0
+\page \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
 
-metadata <configuration_yaml_file> <Resource System Name>
-	Lists all of the Classes for the given Resource in the following format.
-	
-Classes for <Resource>:
-- <System Name> (<StandardName, <Visible Name>)
+\fs21 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 METADATA:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-metadata <configuration_yaml_file> <Resource System Name> <Class System Name>
-	Lists all of the Tables for the given Resource and Class
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone This program allows you to browse the metadata on a defined server.  This program will always display the following information\
+\
+System ID: <SystemID>\
+Description: <Description\
+Comment: <Comment>\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Tables for <Resource>-<Class>:
-- <System Name> (<Standard Name> <Short Name> (<Long Name>)) - Required: <Required Number>
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Usage:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
+\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulc0 metadata <configuration_yaml_file>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-metadata <configuration_yaml_file> <Resource System Name> LOOKUPS
-	Lists all of the Lookups for the given Resource
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Lists all of the resources available in the following format.\
+	\
+Resources: \
+- <System Name> (<StandardName, <Visible Name>)\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Lookups for <Resource>: 
-- <System Name>(<Standard Name>)
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 metadata <configuration_yaml_file> <Resource System Name>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Lists all of the Classes for the given Resource in the following format.\
+	\
+Classes for <Resource>:\
+- <System Name> (<StandardName, <Visible Name>)\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-metadata <configuration_yaml_file> <Resource System Name> LOOKUPS <Lookup System Name>
-	Lists all of the Lookup Values for the given Resource and Lookup
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 metadata <configuration_yaml_file> <Resource System Name> <Class System Name>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Lookup Types for <Resource>-<Lookup>(<Lookup Standard Name>):
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Lists all of the Tables for the given Resource and Class\
+\
+Tables for <Resource>-<Class>:\
+- <System Name> (<Standard Name> <Short Name> (<Long Name>)) - Required: <Required Number>\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Lookup value: <Value> (<Short Value>, <Long Value>)
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 metadata <configuration_yaml_file> <Resource System Name> LOOKUPS\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Lists all of the Lookups for the given Resource\
+\
+Lookups for <Resource>: \
+- <System Name>(<Standard Name>)\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-RETS_DATA_FETCH:
-This program allows you to pull data from a RETS server defined in a config file using the query information also defined there.  Date parameters may be passed to the query allowing you to make delta queries.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 metadata <configuration_yaml_file> <Resource System Name> LOOKUPS <Lookup System Name>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Usage:
-rets_data_fetch  <config file>
-	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the prior month  those parameters
-	
-rets_data_fetch  <config file> <month in YYYY-MM format>
-	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the given month to as those parameters
-	
-rets_data_fetch  <config file> <month in YYYY-MM format> <month in YYYY-MM format>
-	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first day of the first month and last day of the second month to as those parameters
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Lists all of the Lookup Values for the given Resource and Lookup\
+\
+Lookup Types for <Resource>-<Lookup>(<Lookup Standard Name>):\
+\
+Lookup value: <Value> (<Short Value>, <Long Value>)\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Output:
- - All output is to standard out.
- - Format is of CSV file
- - Redirect output to save to file.
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 RETS_DATA_FETCH:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Standard error will display progress information.
-	Fetching 5 of 5 items
-Progress:      100% |oooooooooooooooooooooooooooooooooooooooooo| ETA:  00:00:00
-Done!
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone This program allows you to pull data from a RETS server defined in a config file using the query information also defined there.  Date parameters may be passed to the query allowing you to make delta queries.\
+\
+Usage:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-OBJECT_FETCH:
-This program will perform get object requests based on the data in the config file as well as data inside the the CSV output of a prior rets_data_fetch request.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 rets_data_fetch  <config file>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Usage:
-object_fetch <config file> <CSV file from prior rets_data_fetch>
-	Performs the get object request.  item_id field in the config file will identify the column in the CSV file that contains the item ids for the request.
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the prior month  those parameters\
+	\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Output:
-For each object type defined in the config file, a zip file called <object type>.zip will be created.  In this zip file is a directory for each item id, and in that directory is all the objects of that type for the item.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 rets_data_fetch  <config file> <month in YYYY-MM format>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-CONFIGURATION:
-The configuration file is used by both metadata and rets_data_fetch to connect to and query the RETS server.  It is a YAML file using the following layout. 
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the given month to as those parameters\
+	\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-#Stuff used by everyone
-:rets_info: 
-  :url: http://demo.crt.realtors.org:6103/rets/login
-  :username: Joe
-  :password: Schmoe
-  #:user_agent: CRT-Data-Fetch/1.0
-  #:user_agent_password: yourUserAgentPassword
-  #:user_agent_auth_interealty: yes
-  :rets_version: 1.7.2
-  :log_file: yourlogfile.log
-  
-#Stuff needed for rets_data_fetch 
-:resource: Property
-:class: RES
-#:limit: 100000
-:select:
-    - ListingID: ID
-    - ListDate: Listing Date
-    - ClosePrice: Final Sale Price
-    - ListPrice
-:dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 rets_data_fetch  <config file> <month in YYYY-MM format> <month in YYYY-MM format>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-#Stuff used by object_fetch
-:item_id: ID
-:object_types:
-    - Photo
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first day of the first month and last day of the second month to as those parameters\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Output:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Rets Info Section (:rets_info:)
-	-:url: the URL of the RETS server
-	-:username: the username to access the RETS server
-	-:password: the password for the user to access the RETS server
-	-:user_agent: optional parameter that some RETS servers require for access
-	-:user_agent_password: optional parameter that some RETS servers require for access, only sent if :user_agent is also sent.
-	-:user_agent_auth_interealty: optional parameter that says to use the modified version of UA Auth supported by Interealty.  Defaults to no.
-	-:rets_version: optional parameter to define the RETS version to use.  Allowed values: 1.5, 1.7 and 1.7.2.  Defaults to 1.5.
-	-:log_file: where the details of the RETS interactions will be logged to. Optional and no logging is done if this parameter is not present.
-	
-Resource (:resource:) The system name of the resource you are pulling data from
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone  - All output is to standard out.\
+ - Format is of CSV file\
+ - Redirect output to save to file.\
+\
+Standard error will display progress information.\
+	Fetching 5 of 5 items\
+Progress:      100% |oooooooooooooooooooooooooooooooooooooooooo| ETA:  00:00:00\
+Done!\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Class(:class:) the system name of the class your are pulling data from
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 OBJECT_FETCH:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Limit(:limit:) an optional parameter that can be used to pull a subset of the data requested.  Useful when constructing the query, it will allow you to not pull large data sets while at the same time seeing how many items matched your query since the output will tell you that it is pulling <limit> of X items where X is the total number of items that matched the query.
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone This program will perform get object requests based on the data in the config file as well as data inside the CSV output of a prior rets_data_fetch request.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Select Section(:select:) This is an array of the system names of the table (fields) you wish to pull from the resource and class.  If you just have the system name the column for that field will be the system name.  However if you use the format of <SystemName>: <Mapping Name> the column header for that field will be the mapping name.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Usage:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-DMQL Section(:dmql:) The DQML query that controls what data is pulled from the RETS server.  The parameters of <<start>> and <<end>> will be set based on the date parameters passed  rets_data_fetch, see above in RETS_DATA_FETCH about start and stop dates
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone object_fetch <config file> <CSV file from prior rets_data_fetch>\
+	Performs the get object request.  item_id field in the config file will identify the column in the CSV file that contains the item ids for the request.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Item ID(:item_id:) The id in the list of selected fields that uniquely identifies an object.  This is used by object_fetch to make it's get object requests.
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Output:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-Object Types: A list of the types of objects you wish to run GetObject requests for.  For each type a zipfile with the name <object type>.zip will be created.
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone For each object type defined in the config file, a zip file called <object type>.zip will be created.  In this zip file is a directory for each item id, and in that directory is all the objects of that type for the item.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
 
-Take a look at example_config.yaml to get started.  The file is configured to connect to the demo RETS server.
+\fs22 \cf0 \expnd0\expndtw0\kerning0
+\page \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
 
-LOGGING:
-If you are having trouble, turn on logging by defining the logfile rets_info parameter in the configuration file as discussed above. This will give wealth of information about what libRETS is doing to communicate with the RETS server.
+\fs21 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
 
-SUPPORT:
-If you need help, feel free to email info@crt.realtors.org.  Help with RETS can be obtained on at http://www.rets.org.
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 CONFIGURATION:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone The configuration file is used by both metadata and rets_data_fetch to connect to and query the RETS server.  It is a YAML file using the following layout. \
+\
+#Stuff used by everyone\
+:rets_info: \
+  :url: http://demo.crt.realtors.org:6103/rets/login\
+  :username: Joe\
+  :password: Schmoe\
+  #:user_agent: CRT-Data-Fetch/1.0\
+  #:user_agent_password: yourUserAgentPassword\
+  #:user_agent_auth_interealty: yes\
+  :rets_version: 1.7.2\
+  :log_file: yourlogfile.log\
+  \
+#Stuff needed for rets_data_fetch \
+:resource: Property\
+:class: RES\
+#:limit: 100000\
+:select:\
+    - ListingID: ID\
+    - ListDate: Listing Date\
+    - ClosePrice: Final Sale Price\
+    - ListPrice\
+:dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))\
+\
+#Stuff used by object_fetch\
+:item_id: ID\
+:object_types:\
+    - Photo\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
+
+\fs22 \cf0 \expnd0\expndtw0\kerning0
+\page \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sl276\slmult1\sa200\ql\qnatural\pardirnatural
+
+\fs21 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Rets Info Section (:rets_info:)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f1\b0 \cf0 \expnd0\expndtw0\kerning0
+\ulnone 	-:url: the URL of the RETS server\
+\
+	-:username: the username to access the RETS server\
+\
+	-:password: the password for the user to access the RETS server\
+\
+	-:user_agent: optional parameter that some RETS servers require for access\
+\
+	-:user_agent_password: optional parameter that some RETS servers require for access, only sent if   \
+          :user_agent is also sent.\
+	\
+      -:user_agent_auth_interealty: optional parameter that says to use the modified version of UA Auth supported      \
+          by Interealty.  Defaults to no.\
+	\
+      -:rets_version: optional parameter to define the RETS version to use.  Allowed values: 1.5, 1.7 and 1.7.2.  \
+          Defaults to 1.5.\
+\
+	-:log_file: where the details of the RETS interactions will be logged to. Optional and no logging is done if \
+         this parameter is not present.\
+	\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 Resource (:resource:)
+\f1\b0 \expnd0\expndtw0\kerning0
+\ulnone  The system name of the resource you are pulling data from\
+\
+
+\f0\b \expnd0\expndtw0\kerning0
+\ul Class(:class:)
+\f1\b0 \expnd0\expndtw0\kerning0
+\ulnone  the system name of the class your are pulling data from\
+\
+
+\f0\b \expnd0\expndtw0\kerning0
+\ul Limit(:limit:)
+\f1\b0 \expnd0\expndtw0\kerning0
+\ulnone  an optional parameter that can be used to pull a subset of the data requested.  Useful when constructing the query, it will allow you to not pull large data sets while at the same time seeing how many items matched your query since the output will tell you that it is pulling <limit> of X items where X is the total number of items that matched the query.\
+\
+
+\f0\b \expnd0\expndtw0\kerning0
+\ul Select Section(:select:)
+\f1\b0 \expnd0\expndtw0\kerning0
+\ulnone  This is an array of the system names of the table (fields) you wish to pull from the resource and class.  If you just have the system name the column for that field will be the system name.  However if you use the format of <SystemName>: <Mapping Name> the column header for that field will be the mapping name.\
+\
+
+\f0\b \expnd0\expndtw0\kerning0
+\ul DMQL Section(:dmql:
+\f1\b0 \expnd0\expndtw0\kerning0
+)\expnd0\expndtw0\kerning0
+\ulnone  The DQML query that controls what data is pulled from the RETS server.  The parameters of <<start>> and <<end>> are placeholders for the dates passed in from the parameters set to rets_data_fetch and are only required if you plan on using a query that has variable dates.  See above in RETS_DATA_FETCH for more about start and stop dates. \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ulc0 Item ID(:item_id:
+\f1\b0 \expnd0\expndtw0\kerning0
+)\expnd0\expndtw0\kerning0
+\ulnone  The id in the list of selected fields that uniquely identifies an object.  This is used by object_fetch to make it's get object requests.\
+\
+
+\f0\b \expnd0\expndtw0\kerning0
+\ul Object Types:\expnd0\expndtw0\kerning0
+\ulnone  
+\f1\b0 \expnd0\expndtw0\kerning0
+A list of the types of objects you wish to run GetObject requests for.  For each type a zipfile with the name <object type>.zip will be created.\
+\
+Take a look at example_config.yaml to get started.  The file is configured to connect to the demo RETS server.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f0\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 LOGGING:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f1\b0\fs21 \cf0 \expnd0\expndtw0\kerning0
+\ulnone If you are having trouble, turn on logging by defining the logfile rets_info parameter in the configuration file as discussed above. This will give wealth of information about what libRETS is doing to communicate with the RETS server.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ql\qnatural\pardirnatural
+
+\f0\b \cf0 \expnd0\expndtw0\kerning0
+\ul \ulc0 SUPPORT
+\f1\b0 \expnd0\expndtw0\kerning0
+\ulnone :\
+If you need help, feel free to email info@crt.realtors.org.  Help with RETS can be obtained on at http://www.rets.org.}
