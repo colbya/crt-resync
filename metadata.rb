@@ -18,6 +18,10 @@ require 'rets_helper'
 
 include RetsHelper
 
+def RetsHelper::get_product_name
+  "MetadataBrowser"
+end
+
 def dump_system(metadata)
   system = metadata.system
   puts "System ID: " + system.system_id
@@ -72,16 +76,11 @@ def dump_all_lookup_types(metadata, resource, lookup)
   end
 end
 
-def dump_version()
-  version = get_version
-  libVersion = get_lib_version
-  puts"SimpleRETS MetadataBrowser Version #{version} running on libRETS version #{libVersion}"
-end
 
 config = YAML.load_file(ARGV[0])
 execute_metadata_action(config[:rets_info]) do |metadata|
   puts
-  dump_version()
+  puts get_product_information("RETS Metadata Browser")
   puts
   dump_system(metadata)
   puts
