@@ -13,19 +13,25 @@
 # both the above copyright notice(s) and this permission notice
 # appear in supporting documentation.
 
-require 'rubygems'
+#require 'rubygems'
 require 'librets'
 
 include Librets
 
-module RetsHelper 
+module RetsHelper   
   
   def get_version
-    return "1.1"
+    return "1.5"
   end
   
   def get_lib_version
     return RetsSession.GetLibraryVersion()
+  end
+  
+  def get_product_information(product)
+    version = get_version
+    libVersion = get_lib_version
+    "REsync #{product} Version #{version} running on libRETS version #{libVersion}"
   end
   
   def execute_rets_action(rets_info)

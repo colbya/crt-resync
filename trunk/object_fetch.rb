@@ -30,9 +30,7 @@ content_type_extension = {"application/pdf" => "pdf", "image/bmp" => "bmp", "ima
 "video/mpeg" => "mpv2", "video/quicktime" => "mov", "video/quicktime" => "qt", "video/x-la-asf" => "lsf", "video/x-la-asf" => "lsx", 
 "video/x-ms-asf" => "asf", "video/x-ms-asf" => "asr", "video/x-ms-asf" => "asx", "video/x-msvideo" => "avi", "video/x-sgi-movie" => "movie"}
 
-version = get_version
-libVersion = get_lib_version
-STDERR.puts "SimpleRETS RETS Object Fetcher Version #{version} running on libRETS version #{libVersion}"
+STDERR.puts get_product_information("RETS Object Fetcher")
 
 #Get the ids 
 data_file = CSV.open(ARGV[1], 'r') 
