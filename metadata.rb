@@ -55,7 +55,8 @@ def dump_all_tables(metadata, resource, aClass)
     short_name = table.GetStringAttribute("ShortName", "")
     long_name = table.GetStringAttribute("LongName", "")
     required =  table.GetStringAttribute("Required", "")
-    puts "- #{table.system_name} (#{table.standard_name}, #{short_name} (#{long_name})) - Required: #{required}"
+    data_type = get_display_type_string(table.get_data_type)
+    puts "- #{table.system_name} (#{table.standard_name}, #{short_name} (#{long_name})) Type: #{data_type} - Required: #{required}"
   end
 end
 
