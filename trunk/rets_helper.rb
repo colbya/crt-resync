@@ -72,6 +72,31 @@ module RetsHelper
     end
   end
   
+  def get_display_type_string(data_type)
+    case data_type
+      when MetadataTable::BOOLEAN
+        "Boolean"
+      when MetadataTable::CHARACTER
+        "Charater"
+      when MetadataTable::DATE
+        "Date"
+      when MetadataTable::DATE_TIME
+        "Date and Time"
+      when MetadataTable::TIME
+        "Time"
+      when MetadataTable::TINY
+        "Tiny Integer"
+      when MetadataTable::SMALL
+        "Small Integer"
+      when MetadataTable::INT
+        "Integer"
+      when MetadataTable::LONG
+        "Long Integer"
+      when MetadataTable::DECIMAL
+        "Decimal"
+    end
+  end
+  
   def create_rets_version(version) 
     if version.to_s == "1.7.2" then
       return Librets::RETS_1_7_2 
