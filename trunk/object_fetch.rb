@@ -57,10 +57,10 @@ execute_rets_action(config[:rets_info]) do |session|
           extension = content_type_extension[content_type]
           if(extension != nil) then
             extension = "." + extension
-          end
-          output_file_name = object_id.to_s + extension
-          zipfile.file.open(object_key + "/" + output_file_name, "w") do |f|
-            f << object_descriptor.data_as_string
+            output_file_name = object_id.to_s + extension
+            zipfile.file.open(object_key + "/" + output_file_name, "w") do |f|
+              f << object_descriptor.data_as_string
+            end
           end
         end
         pbar.inc      
