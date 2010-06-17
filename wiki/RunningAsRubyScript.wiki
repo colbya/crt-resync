@@ -1,0 +1,19 @@
+#summary How to run the scripts through Ruby
+#labels Phase-Deploy
+
+= Introduction =
+
+If you don't wish to use REsync's self contained executables, you can run REsync through three Ruby scripts contained in the source download.  However you will need to make sure your computer is configured to run REsync
+
+
+= Requirements =
+
+  # [http://www.ruby-lang.org Ruby] version 1.8.5 or greater.
+  # [http://www.crt.realtors.org/projects/rets/librets/ libRETS] version 1.4 or greater
+  # SWIG bindings for LibRETS installed.
+
+= Running =
+  # Download the source archive.
+  # Uncompress and enter the resync-src directory.
+  # The three script you can run here are metadata.rb, rets_data_fetch.rb.  Everything else except the README and example_config.yaml support those scripts and are required for them to run .  See the README for more details on running the REsync scripts.
+

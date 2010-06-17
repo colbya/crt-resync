@@ -1,0 +1,22 @@
+#summary How to build the executable from source.
+#labels Phase-Deploy
+
+= Introduction =
+
+REsync uses the rubyscript2exe tool to create the self-contained executable.  In doing so it pulls in all the libraries that it needs to be run without either Ruby or libRETS.  However, lower level library incompatibilities, often with the C libraries, can often cause an executable build with rubyscript2exe to not run properly on some computers.  This problem is particularly prevalent with Linux distributions.  This problem has made it so that we no longer create self contained Linux executables for download and instead provide a download that can be used to create your own.  These instructions discuss how to build your own set REsync self-contained executables on Linux.  These instructions will also work for OS X if the self contained executables don't work on your OS X box due to a library incompatibility.
+
+
+= Requirements =
+
+Since you are going to be running the scripts through rubyscript2exe, you will need to have the machine you are building the executables on be able to run REsync as a Ruby script as described on the [RunningAsRubyScript#Requirements] page.
+
+= Steps =
+  # Download the build from source archive.
+  # Uncompress and enter the resync-build-src directory
+  # Run build.sh
+ 
+You should now see three executable files called metadata, rets_data_sync and object_fetch.  
+
+= Deploying =
+
+You can now run the executables on any computer without the need of installing Ruby or libRETS.  However, you should make sure that the machine that built the executables and the ones that are running them do not have incompatible low level C libraries.
