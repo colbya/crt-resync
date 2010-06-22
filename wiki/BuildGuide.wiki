@@ -1,4 +1,4 @@
-#summary How to build the executable from source.
+#summary How to build the executables from source.
 #labels Phase-Deploy
 
 = Introduction =
