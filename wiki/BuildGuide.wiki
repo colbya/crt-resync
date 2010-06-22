@@ -8,7 +8,7 @@ REsync uses the rubyscript2exe tool to create the self-contained executable.  In
 
 = Requirements =
 
-Since you are going to be running the scripts through rubyscript2exe, you will need to have the machine you are building the executables on be able to run REsync as a Ruby script as described on the [RunningAsRubyScript#Requirements] page.
+Since you are going to be running the scripts through rubyscript2exe, you will need to have the machine you are building the executables on be able to run REsync as a Ruby script as described [RunningAsRubyScript#Requirements here] page.
 
 = Steps =
   # Download the build from source archive.
