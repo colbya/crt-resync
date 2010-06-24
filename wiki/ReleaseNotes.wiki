@@ -3,8 +3,8 @@
 
 = Version 1.5 =
 == Released 06/24/2010 ==
-  * Added [http://code.google.com/p/crt-resync/issues/detail?id=1 enhancement #1] to the metadata component.  List of tables for a resource and class now displays the data type.
-  * Fixed [http://code.google.com/p/crt-resync/issues/detail?id=2 bug #2] for the object_fetch component
+  * Added [http://code.google.com/p/crt-resync/issues/detail?id=1 enhancement #1] to the [UserManual#METADATA metadata] component.  List of tables for a resource and class now displays the data type.
+  * Fixed [http://code.google.com/p/crt-resync/issues/detail?id=2 bug #2] for the [UserManual#OBJECT_FETCH object_fetch] component
   * Darwin executables now run on libRETS 1.5.1.  
   * Due to changes that need to be made in libRETS for the Windows Ruby bindings, the Windows executables run on libRETS 1.4.1
   * Removed Linux executable download and added a build from source download.  This was done due to issues with the library incompatibilities with the version that I built vs. the Linux distributions in the field.
