@@ -18,7 +18,7 @@
     - ListDate: Listing Date
     - ClosePrice: Final Sale Price
     - ListPrice
-:dmql: (ListPrice=0+)
+:dmql: (ListPrice=<<price>>+)
 
 #Stuff used by object_fetch
 :item_id: ID
