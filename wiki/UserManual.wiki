@@ -1,4 +1,4 @@
-#summary Readme file included with downloads
+#summary How to use RESync
 #labels Phase-Deploy,Featured
 
 = OVERVIEW =
