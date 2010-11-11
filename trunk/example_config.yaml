@@ -10,6 +10,7 @@
   :log_file: yourlogfile.log
   
 #Stuff needed for rets_data_fetch 
+#:delimeter: ;
 :resource: Property
 :class: RES
 #:limit: 100000
