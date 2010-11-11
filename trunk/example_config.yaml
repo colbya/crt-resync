@@ -10,7 +10,7 @@
   :log_file: yourlogfile.log
   
 #Stuff needed for rets_data_fetch 
-#:delimeter: ;
+#:delimeter: ; #This defines the delimeter of the output file, comma is used if this is not present.
 :resource: Property
 :class: RES
 #:limit: 100000
