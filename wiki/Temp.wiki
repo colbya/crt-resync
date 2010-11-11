@@ -8,7 +8,7 @@ Welcome to REsync, the bare bones get-you-your-data-quickly RETS client from the
  * Can be run from a scheduler or a cron job
  * Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
  * Column headers can be either the RETS System Name or user defined.
- * Delta queries.  REsync supports date based delta queries.
+ * Query Parameters.  REsync supports adding query parameters passed in via the command line.
  * Object download tool.  Can pull objects like photos from the RETS server.
 
 == REQUIREMENTS ==
