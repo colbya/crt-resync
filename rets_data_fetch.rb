@@ -90,8 +90,11 @@ def run_fetch(options)
     #Write the results out to STDOUT
     columns = response.columns
     mapped_columns = columns.collect{|column| mappings.fetch(column, column)}
+    
+    #The delimeter for 
+    delim = config[:delimeter] ? config[:delimeter] : ","
 
-    CSV::Writer.generate(STDOUT) do |csv|
+    CSV::Writer.generate(STDOUT, delim) do |csv|
       csv << mapped_columns
       while(count < requested)
         response.each do |result|    
