@@ -91,8 +91,8 @@ def run_fetch(options)
     columns = response.columns
     mapped_columns = columns.collect{|column| mappings.fetch(column, column)}
     
-    #The delimeter for 
-    delim = config[:delimeter] ? config[:delimeter] : ","
+    #The delimiter for 
+    delim = config[:delimiter] ? config[:delimiter] : ","
 
     CSV::Writer.generate(STDOUT, delim) do |csv|
       csv << mapped_columns
