@@ -154,7 +154,7 @@ The configuration file is used by all components to connect to and query the RET
   
 #Stuff needed for rets_data_fetch 
 :resource: Property
-:delimiter: ; #This defines the delimeter of the output file, comma is used if this is not present.
+:delimiter: ; 
 :class: RES
 :limit: 100000
 :select:
