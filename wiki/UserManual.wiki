@@ -9,7 +9,7 @@ Welcome to REsync, the bare bones get-you-your-data-quickly RETS client from the
  * Can be run from a scheduler or a cron job
  * Output in CSV.  This means you can use the many CSV to database mappers out there to get you data into your database easily.
  * Column headers can be either the RETS System Name or user defined.
- * Delta queries.  REsync supports date based delta queries.
+ * Query Parameters.  REsync supports adding query parameters passed in via the command line.
  * Object download tool.  Can pull objects like photos from the RETS server.
 
 == REQUIREMENTS ==
@@ -96,29 +96,17 @@ Lookup value: <Value> (<Short Value>, <Long Value>)
 }}}
 
 === RETS_DATA_FETCH ===
-This program allows you to pull data from a RETS server defined in a config file using the query information also defined there.  Date parameters may be passed to the query allowing you to make delta queries.
+This program allows you to pull data from a RETS server defined in a config file using the query information also defined there.  Parameters may be passed to the query using 
 
 ==== Usage ====
 
-{{{rets_data_fetch  <config file>}}}
+{{{rets_data_fetch  <config file> parameter1=value1 parameter2=value2}}}
 	
-Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the prior month  those parameters
-
-----
-	
-{{{rets_data_fetch  <config file> <month in YYYY-MM format>}}}
-
-Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first and last day of the given month to as those parameters
-
-----
-	
-{{{rets_data_fetch  <config file> <month in YYYY-MM format> <month in YYYY-MM format>}}}
-
-Pulls the data from the RETS server.  If the query allows for start and stop date parameters it uses the first day of the first month and last day of the second month to as those parameters
+Pulls the data from the RETS server using the given config file.  The parameters passed in will replace the placeholders with the same parameter name with the respective value in the DMQL of the query.  See the [#CONFIGURATION Configuration] section for details on parameter placeholders.
 
 ==== Output ====
  * All output is to standard out.
- * Format is of CSV file
+ * Format is of field delimited file, comma delimited is the default.
  * Redirect output to save to file.
 
 Standard error will display progress information.
@@ -158,22 +146,23 @@ The configuration file is used by all components to connect to and query the RET
   :url: http://demo.crt.realtors.org:6103/rets/login
   :username: Joe
   :password: Schmoe
-  #:user_agent: CRT-Data-Fetch/1.0
-  #:user_agent_password: yourUserAgentPassword
-  #:user_agent_auth_interealty: yes
+  :user_agent: CRT-Data-Fetch/1.0
+  :user_agent_password: yourUserAgentPassword
+  :user_agent_auth_interealty: yes
   :rets_version: 1.7.2
   :log_file: yourlogfile.log
   
 #Stuff needed for rets_data_fetch 
 :resource: Property
+:delimiter: ; #This defines the delimeter of the output file, comma is used if this is not present.
 :class: RES
-#:limit: 100000
+:limit: 100000
 :select:
     - ListingID: ID
     - ListDate: Listing Date
     - ClosePrice: Final Sale Price
     - ListPrice
-:dmql: ((ListPrice=0+), ((ListDate=<<start>>-)| (ListDate=<<end>>-)))
+:dmql: (ListPrice=<<price>>+)
 
 #Stuff used by object_fetch
 :item_id: ID
@@ -190,11 +179,12 @@ The configuration file is used by all components to connect to and query the RET
     * _:user_agent_auth_interealty:_ optional parameter that says to use the modified version of UA Auth supported by Interealty.  Defaults to no.
     * _:rets_version:_ optional parameter to define the RETS version to use.  Allowed values: 1.5, 1.7 and 1.7.2.  Defaults to 1.5.
     * _:log_file:_ where the details of the RETS interactions will be logged to. Optional and no logging is done if this parameter is not present.
+  * *Delimiter: _:delimiter:_* The field delimiter to use in the output file, a comma is used if this is not defined.
   * *Resource: _:resource:_* The system name of the resource you are pulling data from
   * *Class: _:class:_* The system name of the class your are pulling data from
   * *Limit: _:limit:_* An optional parameter that can be used to pull a subset of the data requested.  Useful when constructing the query, it will allow you to not pull large data sets while at the same time seeing how many items matched your query since the output will tell you that it is pulling {{{<limit> of X items}}} where X is the total number of items that matched the query.
   * *Select Section: _:select:_* This is an array of the system names of the table (fields) you wish to pull from the resource and class.  If you just have the system name the column for that field will be the system name.  However if you use the format of {{{<SystemName>: <Mapping Name>}}} the column header for that field will be the mapping name.
-  * *DMQL Section: _:dmql:_* The DQML query that controls what data is pulled from the RETS server.  The parameters of {{{<<start>>}}} and {{{<<end>>}}} will be set based on the date parameters passed in, [#RETS_DATA_FETCH rets_data_fetch] talks about start and stop dates
+  * *DMQL Section: _:dmql:_* The DQML query that controls what data is pulled from the RETS server.  You can define parameter place holders in the format of {{{<<parameter name>>}}}.  The [#RETS_DATA_FETCH rets_data_fetch] section talks more about passing in parameters.
   * *Item ID: _:item_id:_* The id in the list of selected fields that uniquely identifies an object.  This is used by [#OBJECT_FETCH object_fetch] to make it's get object requests.
   * *Object Types: _:object_types:_* A list of the types of objects you wish to run GetObject requests for.  For each type a zipfile with the name {{{<object type>.zip}}} will be created.
 
